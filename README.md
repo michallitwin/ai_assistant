@@ -1,2 +1,2 @@
 # ai_assistant
-Production-ready RAG system for PDF document Q&amp;A
+RAG system for PDF document Q&A — Python, LangChain, ChromaDB, Groq
