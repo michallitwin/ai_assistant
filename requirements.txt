@@ -1,0 +1,5 @@
+langchain
+pypdf
+langchain-text-splitters
+faiss-cpu
+EOF
