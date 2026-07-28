@@ -1,6 +1,6 @@
 from langchain_huggingface import HuggingFaceEmbeddings
 
-def get_embedding_model(model_name: str = "BAAI/bge-small-en-v1.5") -> HuggingFaceEmbeddings:
+def get_embedding_model(model_name: str = "paraphrase-multilingual-MiniLM-L12-v2") -> HuggingFaceEmbeddings:
     #run model on cpu for local environment compatibility
     model_kwargs={'device': 'cpu'}
     #normalize vectors to unit length for faster cosine similarity calculation
