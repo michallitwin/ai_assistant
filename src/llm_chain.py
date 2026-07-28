@@ -17,4 +17,6 @@ def format_docs(docs: list) -> str:
     for doc in docs:
         page = doc.metadata.get("page_number", "N/A")
         source = doc.metadata.get("source", "N/A")
-        text =
+        text = doc.page_content
+        formatted.append(f"[Source: {source}, Page: {page}]\n{text}")
+    return "\n\n---\n\n".join(formatted)
