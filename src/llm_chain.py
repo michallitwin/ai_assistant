@@ -2,6 +2,7 @@ import os
 from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 from src.retriever import get_relevant_chunks
+from langchain_chroma import Chroma
 
 
 
