@@ -1,9 +1,12 @@
 from pypdf import PdfReader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
+import os 
 
 def load_pdf(file_path:str) -> list[dict]:
     reader = PdfReader(file_path)
+    file_name = os.path.basename(file_path)
     result = []
+
     for i, p in enumerate(reader.pages):
         text = p.extract_text()
         #if there isnt text on first page
