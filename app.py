@@ -3,7 +3,9 @@ import streamlit as st
 from src.document_processor import load_pdf, split_into_chunks
 from src.vector_store import create_vector_store
 from src.llm_chain import generate_answer
+from dotenv import load_dotenv
 
+load_dotenv()
 
 st.set_page_config(page_title="PDF RAG System", layout="wide")
 st.title("PDF RAG Analyzer")
