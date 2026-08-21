@@ -33,6 +33,14 @@ with st.sidebar:
                 st.success(f"Successfully indexed {len(chunks)} chunks from {len(pages)} pages!")
 
 
+    st.divider()
+    st.header("2. Choose LLM Model")
+    selected_model_label = st.selectbox(
+        "Select Model Provider:",
+        options=["Groq (Llama 3.1)", "Google (Gemini 1.5 Flash)"],
+        index=0
+    )
+    
 st.header("2. Ask a Question")
 
 if "vector_store" in st.session_state:

@@ -1,9 +1,0 @@
-langchain
-pypdf
-langchain-text-splitters
-faiss-cpu
-langchain-huggingface 
-langchain-chroma
-streamlit
-langchain_groq
-sentence-transformers

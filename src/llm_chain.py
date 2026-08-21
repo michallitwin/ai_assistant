@@ -1,17 +1,23 @@
 import os
 from langchain_groq import ChatGroq
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate
 from src.retriever import get_relevant_chunks
 from langchain_chroma import Chroma
 
 
 
-def get_llm():
-    return ChatGroq(
-        model="llama-3.1-8b-instant",
-        temperature=0.1
-    )
-
+def get_llm(provider: str = "groq"):
+    if provider == "groq":
+        return ChatGroq(
+            model="llama-3.1-8b-instant",
+            temperature=0.1
+        )
+    elif provider == "gemini":
+        return ChatGoogleGenerativeAI(
+            model="gemini-1.5-flash",
+            temperature=0.1
+        )
 
 def format_docs(docs: list) -> str:
     formatted = []
@@ -23,7 +29,7 @@ def format_docs(docs: list) -> str:
     return "\n\n---\n\n".join(formatted)
 
 
-def generate_answer(query: str, vector_store: Chroma) -> str:
+def generate_answer(query: str, vector_store: Chroma, provider: str = "groq") -> str:
     #retrieve and format context from the vector database
     docs = get_relevant_chunks(query=query, vector_store=vector_store, k=3)
 
@@ -41,7 +47,7 @@ def generate_answer(query: str, vector_store: Chroma) -> str:
     ])
 
 
-    llm = get_llm()
+    llm = get_llm(provider=provider)
 
     chain = prompt | llm
 
