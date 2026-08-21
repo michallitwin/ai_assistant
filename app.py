@@ -30,28 +30,30 @@ with st.sidebar:
                 if os.path.exists(temp_path):
                     os.remove(temp_path)
 
-                st.success(f"Successfully indexed {len(chunks)} chunks from {len(pages)} pages!")
-
+                st.success(
+                    f"Successfully indexed {len(chunks)} chunks from {len(pages)} pages!"
+                )
 
     st.divider()
     st.header("2. Choose LLM Model")
     selected_model_label = st.selectbox(
         "Select Model Provider:",
         options=["Groq (Llama 3.1)", "Google (Gemini 1.5 Flash)"],
-        index=0
+        index=0,
     )
-    
+
+    provider = "gemini" if "Gemini" in selected_model_label else "groq"
+
 st.header("2. Ask a Question")
 
 if "vector_store" in st.session_state:
     query = st.text_input("Enter your question about the document:")
-    
+
     if st.button("Generate Answer"):
         if query.strip():
             with st.spinner("Searching database and generating answer..."):
                 answer = generate_answer(
-                    query=query, 
-                    vector_store=st.session_state["vector_store"]
+                    query=query, vector_store=st.session_state["vector_store"]
                 )
                 st.markdown("### Answer:")
                 st.write(answer)

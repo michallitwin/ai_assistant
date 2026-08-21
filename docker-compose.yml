@@ -1,10 +1,11 @@
 services:
   app:
+    build: .
     image: ai-assistant
     ports:
       - "8501:8501"
     volumes:
-      - ./data:/app/data
+      - .:/app
       - ./chroma_db:/app/chroma_db
     env_file:
       - .env
